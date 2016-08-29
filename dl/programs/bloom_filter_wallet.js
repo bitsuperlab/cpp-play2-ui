@@ -21,7 +21,7 @@ var h = require('../src/common/hash')
 var key_utils = require('../src/common/key_utils')
 var chain_config = require('../src/chain/config')
 
-chain_config.address_prefix = "BTS"
+chain_config.address_prefix = "PLS"
 
 fs.readFile('bloom.dat', function (err, data) {
     if (err) throw err
@@ -65,7 +65,7 @@ fs.readFile('bloom.dat', function (err, data) {
                 if(running_count % 100 === 0) console.error('processing', running_count)
                 if( ! keys.public_keys) unsupportedJsonFormat()
                 var key = keys.public_keys[k]
-                if( /^GPH/.test(key) ) key = "BTS" + key.substring(3)
+                if( /^GPH/.test(key) ) key = "PLS" + key.substring(3)
                 if(in_bloom( key )) continue
                 var addresses = key_utils.addresses(key)
                 var addy_found = false
