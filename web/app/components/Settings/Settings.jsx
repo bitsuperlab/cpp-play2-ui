@@ -19,7 +19,7 @@ class Settings extends React.Component {
         super();
 
         this.state = {
-            connection: props.settings.get("connection"),
+            apiServer: props.settings.get("apiServer"),
             activeSetting: props.viewSettings.get("activeSetting", 0),
             menuEntries: [
                 "general",
@@ -32,8 +32,8 @@ class Settings extends React.Component {
             ],
             settingEntries: {
                 general: ["locale", "unit", "showSettles", "walletLockTimeout", "themes",
-                "disableChat"],
-                access: ["connection", "faucet_address"]
+                "disableChat", "showAssetPercent"],
+                access: ["apiServer", "faucet_address"]
             }
         };
     }
@@ -89,10 +89,10 @@ class Settings extends React.Component {
             value = findEntry(e.target.value, defaults[setting]) === 0; // USD/BTS is true, BTS/USD is false
             break;
 
-        case "connection":
-            // SettingsActions.changeSetting({setting: "connection", value: e.target.value });
+        case "apiServer":
+            SettingsActions.changeSetting({setting: "apiServer", value: e.target.value });
             this.setState({
-                connection: e.target.value
+                apiServer: e.target.value
             });
             break;
 
@@ -102,6 +102,10 @@ class Settings extends React.Component {
 
         case "showSettles":
             SettingsActions.changeSetting({setting: "showSettles", value: e.target.value === "yes" });
+            break;
+
+        case "showAssetPercent":
+            SettingsActions.changeSetting({setting: "showAssetPercent", value: e.target.value === "yes" });
             break;
 
         case "unit":
@@ -201,9 +205,9 @@ class Settings extends React.Component {
                 </div>
                 <WebsocketAddModal
                     ref="ws_modal"
-                    apis={defaults["connection"]}
-                    api={defaults["connection"].filter(a => {return a === this.state.connection;})}
-                    changeConnection={(connection) => {this.setState({connection});}}
+                    apis={defaults["apiServer"]}
+                    api={defaults["apiServer"].filter(a => {return a === this.state.apiServer;})}
+                    changeConnection={(apiServer) => {this.setState({apiServer});}}
                 />
             </div>
         );

@@ -38,10 +38,10 @@ export class BackupCreate extends BackupBaseComponent {
     render() {
         return (
             <div style={{maxWidth: "40rem"}}>
-            <Create newAccount={this.props.location ? this.props.location.query.newAccount : null}>
+            <Create noText={this.props.noText} newAccount={this.props.location ? this.props.location.query.newAccount : null}>
                 <NameSizeModified/>
-                <Sha1/>
-                <Download/>
+                {this.props.noText ? null : <Sha1/>}
+                <Download downloadCb={this.props.downloadCb}/>
             </Create>
 
         </div>
@@ -244,7 +244,7 @@ class Download extends BackupBaseComponent {
     }
 
     render() {
-        return <div className="button outline"
+        return <div className="button"
             onClick={this.onDownload.bind(this)}><Translate content="wallet.download" /></div>
     }
 
@@ -255,7 +255,11 @@ class Download extends BackupBaseComponent {
         if(blob.size !== this.props.backup.size)
             throw new Error("Invalid backup to download conversion")
         saveAs(blob, this.props.backup.name);
-        WalletActions.setBackupDate()
+        WalletActions.setBackupDate();
+
+        if (this.props.downloadCb) {
+            this.props.downloadCb();
+        }
     }
 }
 
@@ -287,13 +291,14 @@ class Create extends BackupBaseComponent {
 
         return (
             <div>
+                {this.props.noText ? null :
                 <div style={{textAlign: "left"}}>
                     {this.props.newAccount ? <Translate component="p" content="wallet.backup_new_account"/> : null}
                     <Translate component="p" content="wallet.backup_explain"/>
-                </div>
+                </div>}
                 <div
                     onClick={this.onCreateBackup.bind(this)}
-                    className={cname("button outline", {disabled: !ready})}
+                    className={cname("button", {disabled: !ready})}
                     style={{marginBottom: 10}}
                 >
                     <Translate content="wallet.create_backup_of" name={this.props.wallet.current_wallet} />
@@ -315,6 +320,9 @@ class Create extends BackupBaseComponent {
 
 class LastBackupDate extends Component {
     render() {
+        if (!WalletDb.getWallet()) {
+            return null;
+        }
         var backup_date = WalletDb.getWallet().backup_date
         var last_modified = WalletDb.getWallet().last_modified
         var backup_time = backup_date ?
@@ -366,7 +374,7 @@ class Upload extends BackupBaseComponent {
 
         return (
             <div>
-                <input ref="file_input" type="file" id="backup_input_file" style={{ border: "solid" }}
+                <input ref="file_input" accept=".bin" type="file" id="backup_input_file" style={{ border: "solid" }}
                     onChange={this.onFileUpload.bind(this)} />
                 { is_invalid ? <h5><Translate content="wallet.invalid_format" /></h5> : null }
                 {resetButton}

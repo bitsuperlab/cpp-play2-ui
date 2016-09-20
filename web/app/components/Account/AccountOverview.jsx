@@ -14,6 +14,8 @@ import Proposals from "components/Account/Proposals";
 import {ChainStore} from "graphenejs-lib";
 import SettingsActions from "actions/SettingsActions";
 import assetUtils from "common/asset_utils";
+import ActionSheet from "react-foundation-apps/src/action-sheet";
+import Icon from "../Icon/Icon";
 
 class AccountOverview extends React.Component {
 
@@ -52,6 +54,7 @@ class AccountOverview extends React.Component {
     _renderBalances(balanceList) {
         let {settings, hiddenAssets} = this.props;
         let preferredUnit = settings.get("unit") || "1.3.0";
+        let showAssetPercent = settings.get("showAssetPercent", false);
 
         let balances = [];
         balanceList.forEach( balance => {
@@ -63,15 +66,19 @@ class AccountOverview extends React.Component {
             const core_asset = ChainStore.getAsset("1.3.0");
 
             let assetInfoLinks;
+            let marketLink, settleLink;
             if (asset) {
                 let {market} = assetUtils.parseDescription(asset.getIn(["options", "description"]));
 
                 let preferredMarket = market ? market : core_asset ? core_asset.get("symbol") : "PLS";
+                marketLink = asset.get("id") !== "1.3.0" ? <a href={`#/market/${asset.get("symbol")}_${preferredMarket}`}><AssetName name={asset.get("symbol")} /> : <AssetName name={preferredMarket} /></a> : null;
+                settleLink = <a href onClick={this._onSettleAsset.bind(this, asset.get("id"))}><Translate content="account.settle"/></a>;
+
                 assetInfoLinks = (
                 <ul>
                     <li><a href={`#/asset/${asset.get("symbol")}`}><Translate content="account.asset_details"/></a></li>
-                    {asset.get("id") !== "1.3.0" ? <li><a href={`#/market/${asset.get("symbol")}_${preferredMarket}`}><AssetName name={asset.get("symbol")} /> : <AssetName name={preferredMarket} /></a></li> : null}
-                    {isBitAsset && <li><a href onClick={this._onSettleAsset.bind(this, asset.get("id"))}><Translate content="account.settle"/></a></li>}
+                    <li>{marketLink}</li>
+                    {isBitAsset ? <li>{settleLink}</li> : null}
                 </ul>);
             }
 
@@ -83,8 +90,33 @@ class AccountOverview extends React.Component {
                     <td style={{textAlign: "right"}}><BalanceComponent balance={balance} assetInfo={assetInfoLinks}/></td>
                     {/*<td style={{textAlign: "right"}}><MarketLink.ObjectWrapper object={balance}></MarketLink.ObjectWrapper></td>*/}
                     <td style={{textAlign: "right"}}><BalanceValueComponent balance={balance} toAsset={preferredUnit}/></td>
-                    <td style={{textAlign: "right"}}><BalanceComponent balance={balance} asPercentage={true}/></td>
-                    <td style={{textAlign: "right"}}><div onClick={this._hideAsset.bind(this, asset_type, includeAsset)} className="button outline">{includeAsset ? "-" : "+"}</div></td>
+                    {showAssetPercent ? <td style={{textAlign: "right"}}><BalanceComponent balance={balance} asPercentage={true}/></td> : null}
+                    <td style={{textAlign: "center"}}>
+                        <ActionSheet>
+                            <ActionSheet.Button title="">
+                                <a className="action-button">
+                                    &nbsp;<Translate content="account.perm.action" />&nbsp;
+                                    <Icon className="icon-14px" name="chevron-down"/>
+                                </a>
+                            </ActionSheet.Button>
+                            <ActionSheet.Content >
+                                <ul className="no-first-element-top-border">
+                                    <li className="dropdown-options">
+                                        <a onClick={this._hideAsset.bind(this, asset_type, includeAsset)}>{includeAsset ? "Hide asset" : "Show asset"}</a>
+                                    </li>
+
+                                    <li className="dropdown-options">
+                                        {marketLink}
+                                    </li>
+
+                                    {isBitAsset ? <li className="dropdown-options">
+                                        {settleLink}
+                                    </li> : null}
+                                </ul>
+                            </ActionSheet.Content>
+                        </ActionSheet>
+
+                    </td>
                 </tr>
             );
         })
@@ -99,7 +131,7 @@ class AccountOverview extends React.Component {
     }
 
     render() {
-        let {account, hiddenAssets} = this.props;
+        let {account, hiddenAssets, settings} = this.props;
         let {showHidden} = this.state;
 
         if (!account) {
@@ -141,17 +173,18 @@ class AccountOverview extends React.Component {
             hiddenBalances.unshift(<tr><td colSpan="4"></td></tr>)
             hiddenBalances.push(
                 <tr>
+                    <td colSpan="2" style={{textAlign: "right", fontWeight: "bold", paddingTop: 20}}>{hiddenTotal}</td>
                     <td></td>
-                    <td style={{textAlign: "right", fontWeight: "bold"}}>{hiddenTotal}</td>
-                    <td colSpan="2"></td>
                 </tr>
             );
         }
 
         let totalBalance = includedBalancesList.size ? <TotalBalanceValue balances={includedBalancesList}/> : null;
 
+        let showAssetPercent = settings.get("showAssetPercent", false);
+
         return (
-            <div className="grid-content">
+            <div className="grid-content" style={{overflowX: "hidden"}}>
                 <div className="content-block small-12">
                     <div className="generic-bordered-box">
                         <div className="block-content-header">
@@ -164,16 +197,17 @@ class AccountOverview extends React.Component {
                                     <th style={{textAlign: "right"}}><Translate component="span" content="account.asset" /></th>
                                     {/*<<th style={{textAlign: "right"}}><Translate component="span" content="account.bts_market" /></th>*/}
                                     <th style={{textAlign: "right"}}><Translate component="span" content="account.eq_value" /></th>
-                                    <th style={{textAlign: "right"}}><Translate component="span" content="account.percent" /></th>
+                                    {showAssetPercent ? <th style={{textAlign: "right"}}><Translate component="span" content="account.percent" /></th> : null}
                                     <th>{/* Hide button */}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {includedBalances}
                                 {includedBalancesList.size > 1 ? <tr>
+                                    <td colSpan="2" style={{textAlign: "right", fontWeight: "bold", paddingTop: 20}}>
+                                        <span><Translate content="account.estimate_value" />: {totalBalance}</span>
+                                    </td>
                                     <td></td>
-                                    <td style={{textAlign: "right", fontWeight: "bold"}}>{totalBalance}</td>
-                                    <td colSpan="2"></td>
                                 </tr> : null}
                                 {showHidden ? hiddenBalances : null}
                                 {hiddenBalancesList.size ? (
@@ -206,9 +240,8 @@ class AccountOverview extends React.Component {
                                 <th><Translate content="transaction.borrow_amount" /></th>
                                 <th><Translate content="transaction.collateral" /></th>
                                 <th><Translate content="borrow.coll_ratio" /></th>
-                                <th><Translate content="exchange.call" /></th>
-                                <th><Translate content="borrow.adjust" /></th>
-                                <th><Translate content="borrow.close" /></th>
+                                <th className="column-hide-small"><Translate content="exchange.call" /></th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>

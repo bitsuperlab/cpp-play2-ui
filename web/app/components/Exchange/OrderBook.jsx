@@ -267,10 +267,10 @@ class OrderBook extends React.Component {
                 if (this.state.showAllBids) {
                     return true;
                 }
-                return a.price_full >= high / 5
+                return a.price_full >= high / 5;
             })
             .map((order, index) => {
-                totalBidAmount = market_utils.limitByPrecision(totalBidAmount + utils.get_satoshi_amount(order.amount, base), base);
+                totalBidAmount = market_utils.limitByPrecision(totalBidAmount + utils.get_satoshi_amount(order.amount, quote), quote);
                 totalBidValue += order.value;
                 totalBidForSale += order.for_sale;
 
@@ -412,8 +412,8 @@ class OrderBook extends React.Component {
             );
 
             return (
-                    <div className={classnames("grid-block orderbook no-padding small-vertical medium-horizontal align-spaced no-overflow small-12 large-8")}>
-                        <div className={classnames("small-12 medium-6 large-6 middle-content", this.state.flip ? "order-1" : "order-2")}>
+                    <div className={classnames(this.props.wrapperClass, "grid-block orderbook no-padding small-vertical medium-horizontal align-spaced no-overflow small-12 xlarge-8")}>
+                        <div className={classnames("small-12 medium-6 middle-content", this.state.flip ? "order-1" : "order-2")}>
                             <div className="exchange-bordered">
                                 <div className="exchange-content-header ask">
                                     <Translate content="exchange.asks" />
@@ -454,7 +454,7 @@ class OrderBook extends React.Component {
                             </div>
                         </div>
 
-                        <div className={classnames("small-12 medium-6 large-6 middle-content", this.state.flip ? "order-2" : "order-1")}>
+                        <div className={classnames("small-12 medium-6 middle-content", this.state.flip ? "order-2" : "order-1")}>
                             <div className="exchange-bordered">
                                 <div className="exchange-content-header bid">
                                     <Translate content="exchange.bids" />

@@ -8,7 +8,7 @@ try {
     bts_genesiskeys_bloom_url = url
 } catch(e) {
     // webpack deployment exception (not run time)
-    console.log("WARN: Will be unable to filter BTS 1.0 wallet imports, did not find assets/pls_genesiskeys_bloom.dat", e)
+    console.log("WARN: Will be unable to filter PLAY 0.4.x wallet imports, did not find assets/pls_genesiskeys_bloom.dat", e)
 }
 
 /**
@@ -75,7 +75,7 @@ export default class GenesisFilter {
 
     filter( account_keys, status ) {
         if( ! this.isAvailable() ) {
-            console.log("WARN: Missing bloom filter for BTS 0.9.x wallets")
+            console.log("WARN: Missing bloom filter for PLAY 0.4.x wallets")
             status({ error: "missing_bloom" })
             return
         }
@@ -102,10 +102,10 @@ export default class GenesisFilter {
                             status({ error: "missing_public_keys" })
                             return
                         }
-                        var key = keys.public_keys[k]
-                        if( /^GPH/.test(key) ) key = "PLS" + key.substring(3)
-                        if(this.inGenesis( key )) continue
-                        var addresses = key.addresses(key, 'PLS')
+                        var currentKey = keys.public_keys[k]
+                        if( /^GPH/.test(currentKey) ) currentKey = "PLS" + currentKey.substring(3)
+                        if(this.inGenesis( currentKey )) continue
+                        var addresses = key.addresses(currentKey, 'PLS')
                         var addy_found = false
                         for(var i = 0; i < addresses.length; i++) {
                             if(this.inGenesis( addresses[i] )) {
@@ -139,4 +139,4 @@ export default class GenesisFilter {
         })
     }
 
-}
+  }
