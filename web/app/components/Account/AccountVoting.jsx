@@ -25,7 +25,7 @@ let wallet_api = new WalletApi()
 
 @BindToChainState()
 class AccountVoting extends React.Component {
-   
+
     static propTypes = {
       initialBudget: ChainTypes.ChainObject.isRequired,
       globalObject: ChainTypes.ChainObject.isRequired,
@@ -134,7 +134,7 @@ class AccountVoting extends React.Component {
         updated_account.new_options.num_witness = this.state.witnesses.size;
         updated_account.new_options.num_committee = this.state.committee.size;
 
-        // Set fee asset        
+        // Set fee asset
         updated_account.fee = {
             amount: 0,
             asset_id: accountUtils.getFinalFeeAsset(updated_account.id, "account_update")
@@ -144,7 +144,7 @@ class AccountVoting extends React.Component {
         let {vote_ids} = this.state;
         let workers = this._getWorkerArray();
         let now = new Date();
-        
+
         function removeVote(list, vote) {
             if (list.includes(vote)) {
                 list = list.delete(vote);
@@ -164,7 +164,7 @@ class AccountVoting extends React.Component {
         })
 
 
-        // Submit votes 
+        // Submit votes
         FetchChainObjects(ChainStore.getWitnessById, this.state.witnesses.toArray(), 4000).then( res => {
             let witnesses_vote_ids = res.map(o => o.get("vote_id"));
             return Promise.all([Promise.resolve(witnesses_vote_ids), FetchChainObjects(ChainStore.getCommitteeMemberById, this.state.committee.toArray(), 4000)]);
@@ -265,7 +265,7 @@ class AccountVoting extends React.Component {
         let {lastBudgetObject} = this.state;
         let budgetObject;
 
-        budgetObject = ChainStore.getObject(lastBudgetObject ? lastBudgetObject : "2.13.1"); 
+        budgetObject = ChainStore.getObject(lastBudgetObject ? lastBudgetObject : "2.13.1");
         if (budgetObject) {
             let timestamp = budgetObject.get("time");
             let now = new Date();
@@ -326,7 +326,7 @@ class AccountVoting extends React.Component {
         let totalBudget = 0;
         let unusedBudget = 0;
         let workerBudget = globalObject ? parseInt(globalObject.getIn(["parameters", "worker_budget_per_day"]), 10) : 0;
-        
+
         if (budgetObject) {
             workerBudget = Math.min(24 * budgetObject.getIn(["record", "worker_budget"]), workerBudget);
             totalBudget = Math.min(24 * budgetObject.getIn(["record", "worker_budget"]), workerBudget);
@@ -343,15 +343,15 @@ class AccountVoting extends React.Component {
             if (!a) {
                 return false;
             }
-            
+
             return (
                 new Date(a.get("work_end_date")) > now &&
                 new Date(a.get("work_begin_date")) <= now
             );
-            
+
         })
         .sort((a, b) => {
-            return this._getTotalVotes(b) - this._getTotalVotes(a);            
+            return this._getTotalVotes(b) - this._getTotalVotes(a);
         })
         .map((worker, index) => {
             let dailyPay = parseInt(worker.get("daily_pay"), 10);
@@ -376,14 +376,14 @@ class AccountVoting extends React.Component {
             if (!a) {
                 return false;
             }
-            
+
             return (
                 new Date(a.get("work_begin_date")) >= now
             );
-            
+
         })
         .sort((a, b) => {
-            return this._getTotalVotes(b) - this._getTotalVotes(a);            
+            return this._getTotalVotes(b) - this._getTotalVotes(a);
         })
         .map((worker, index) => {
             let dailyPay = parseInt(worker.get("daily_pay"), 10);
@@ -406,14 +406,14 @@ class AccountVoting extends React.Component {
             if (!a) {
                 return false;
             }
-            
+
             return (
                 new Date(a.get("work_end_date")) <= now
             );
-            
+
         })
         .sort((a, b) => {
-            return this._getTotalVotes(b) - this._getTotalVotes(a);            
+            return this._getTotalVotes(b) - this._getTotalVotes(a);
         })
         .map((worker, index) => {
             let dailyPay = parseInt(worker.get("daily_pay"), 10);
@@ -551,6 +551,7 @@ class AccountVoting extends React.Component {
                             </div>
                         </Tab>
 
+{/*
                         <Tab title="account.votes.workers_short">
 
                             <div className={cnames("content-block", {disabled : proxy_is_set})}>
@@ -610,6 +611,8 @@ class AccountVoting extends React.Component {
                             </table>
                             </div>
                         </Tab>
+*/}
+
                 </Tabs>
             </div>
         )

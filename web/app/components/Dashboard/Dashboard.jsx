@@ -76,23 +76,11 @@ class Dashboard extends React.Component {
         let accountCount = linkedAccounts.size + myIgnoredAccounts.size;
 
         let featuredMarkets = [
-            ["BTS", "CNY"],
-            ["BTS", "PEERPLAYS"],
-            ["OPEN.BTC", "OPEN.DGD"],
-            ["OPEN.BTC", "OPEN.STEEM"],
-            ["PLS", "OPEN.LISK"],
-            ["PLS", "BTSR"],
-            ["PLS", "OBITS"],
-            ["PLS", "USD"],
-            ["PLS", "CNY"],
-            ["BTC", "PLS"],
-            ["PLS", "GOLD"],
-            ["OPEN.BTC", "OPEN.ETH"],
+            ["PLS", "DICE"],
         ];
 
         let newAssets = [
-            "OPEN.DAO",
-            "OPEN.LISK"
+            "DICE",
         ];
 
         let markets = featuredMarkets.map((pair, index) => {
@@ -120,10 +108,12 @@ class Dashboard extends React.Component {
         return (
             <div ref="wrapper" className="grid-block page-layout vertical">
                 <div ref="container" className="grid-container" style={{padding: "25px 10px 0 10px"}}>
+{/*
                     <Translate content="exchange.featured" component="h4" />
                     <div className="grid-block small-up-1 medium-up-3 large-up-4 no-overflow">
                         {markets}
                     </div>
+*/}
 
                     {accountCount ? <div className="generic-bordered-box" style={{marginBottom: 5}}>
                         <div className="block-content-header" style={{marginBottom: 15}}>

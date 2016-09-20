@@ -96,24 +96,16 @@ class AccountLeftPanel extends React.Component {
                             <ul className="account-left-menu" style={{marginBottom: 0}}>
                                 <li><Link to={`/account/${account_name}/overview/`} activeClassName="active"><Translate content="account.overview"/></Link></li>
                                 <li><Link to={`/account/${account_name}/member-stats/`} activeClassName="active"><Translate content="account.member.stats"/></Link></li>
-                                <li><Link to={`/account/${account_name}/orders/`} activeClassName="active"><Translate content="account.open_orders"/></Link></li>
+                                {/*<li><Link to={`/account/${account_name}/orders/`} activeClassName="active"><Translate content="account.open_orders"/></Link></li>*/}
                                 <li><Link to={`/account/${account_name}/voting/`} activeClassName="active"><Translate content="account.voting"/></Link></li>
-                                {isMyAccount ? <li><Link to={`/account/${account_name}/deposit-withdraw/`} activeClassName="active"><Translate content="account.deposit_withdraw"/></Link></li> : null}
+                                {/*isMyAccount ? <li><Link to={`/account/${account_name}/deposit-withdraw/`} activeClassName="active"><Translate content="account.deposit_withdraw"/></Link></li> : null*/}
 
-                                {/* Advanced features*/}
-                                <li className="menu-subheader" onClick={this._toggleAdvanced.bind(this)}>
-                                    <span className="button outline">
-                                        <Translate content="account.user_issued_assets.advanced" />
-                                        <span>  {caret}</span>
-                                    </span>
-                                </li>
-                            </ul>
-                            {this.state.showAdvanced ? (<ul className="account-left-menu">
-                                <li><Link to={`/account/${account_name}/assets/`} activeClassName="active"><Translate content="explorer.assets.title"/></Link></li>
+
+                                {/*<li><Link to={`/account/${account_name}/assets/`} activeClassName="active"><Translate content="explorer.assets.title"/></Link></li>*/}
                                 <li><Link to={`/account/${account_name}/permissions/`} activeClassName="active"><Translate content="account.permissions"/></Link></li>
                                 <li><Link to={`/account/${account_name}/whitelist/`} activeClassName="active"><Translate content="account.whitelist.title"/></Link></li>
                                 {isMyAccount ? <li><Link to={`/account/${account_name}/vesting/`} activeClassName="active"><Translate content="account.vesting.title"/></Link></li> : null}
-                            </ul>) : null}
+                            </ul>
                         </section>
                     </div>
                 </div>

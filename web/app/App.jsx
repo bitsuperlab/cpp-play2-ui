@@ -376,8 +376,8 @@ let routes = (
         <Route path="create-wallet" component={WalletCreate}/>
         <Route path="transfer" component={Transfer}/>
         <Route path="invoice/:data" component={Invoice}/>
-        <Route path="explorer/markets" component={Markets}/>
-        <Route path="market/:marketID" component={Exchange}/>
+        {/*<Route path="explorer/markets" component={Markets}/>*/}
+        {/*<Route path="market/:marketID" component={Exchange}/>*/}
         <Route path="settings" component={Settings}/>
         <Route path="block/:height" component={BlockContainer}/>
         <Route path="asset/:symbol" component={AssetContainer}/>
@@ -392,18 +392,22 @@ let routes = (
         <Route path="/account/:account_name" component={AccountPage}>
             <IndexRoute component={AccountOverview}/>
             <Route path="overview" component={AccountOverview}/>
+{/*
             <Route path="assets" component={AccountAssets}/>
             <Route path="create-asset" component={AccountAssetCreate}/>
             <Route path="update-asset/:asset" component={AccountAssetUpdate}/>
+*/}
             <Route path="member-stats" component={AccountMembership}/>
             <Route path="vesting" component={AccountVesting}/>
             <Route path="permissions" component={AccountPermissions}/>
             <Route path="voting" component={AccountVoting}/>
-            <Route path="deposit-withdraw" component={AccountDepositWithdraw}/>
-            <Route path="orders" component={AccountOrders}/>
+{
+            /*<Route path="deposit-withdraw" component={AccountDepositWithdraw}/>*/
+            /*<Route path="orders" component={AccountOrders}/>*/
+}
             <Route path="whitelist" component={AccountWhitelist}/>
         </Route>
-        <Route path="deposit-withdraw" component={AccountDepositWithdraw}/>
+        {/*<Route path="deposit-withdraw" component={AccountDepositWithdraw}/>*/}
         <Route path="/init-error" component={InitError}/>
         <Route path="/help" component={Help}>
             <Route path=":path1" component={Help}>
