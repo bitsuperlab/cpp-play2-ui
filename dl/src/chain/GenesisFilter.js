@@ -2,39 +2,39 @@ import {hash, key} from "graphenejs-lib";
 
 var bts_genesiskeys_bloom_url = undefined
 try {
-    var url = require("file?name=bts_genesiskeys_bloom_[sha1:hash:hex:7].dat!assets/bts_genesiskeys_bloom.dat")
+    var url = require("file?name=pls_genesiskeys_bloom_[sha1:hash:hex:7].dat!assets/pls_genesiskeys_bloom.dat")
     if(url.indexOf("3cee441") === -1)
-        throw new Error("Incorrect hash: bts_genesiskeys_bloom.dat")
+        throw new Error("Incorrect hash: pls_genesiskeys_bloom.dat")
     bts_genesiskeys_bloom_url = url
 } catch(e) {
     // webpack deployment exception (not run time)
-    console.log("WARN: Will be unable to filter BTS 1.0 wallet imports, did not find assets/bts_genesiskeys_bloom.dat", e)
+    console.log("WARN: Will be unable to filter BTS 1.0 wallet imports, did not find assets/pls_genesiskeys_bloom.dat", e)
 }
 
 /**
-    This should only be applied to a BTS 1.0 export file taken on the 
+    This should only be applied to a BTS 1.0 export file taken on the
     discontinued chain. Any public key string or address (all 5 formats) carried
     over to the BTS 2.0 genesis block will be in this filter.
 
     Their may be some false positives but no false negatives.
 */
 export default class GenesisFilter {
-    
+
     /** or call this.init */
     constructor(bloom_buffer) {
         if( ! bloom_buffer ) return
         this.bloom_buffer = bloom_buffer
         this.bits_in_filter = bloom_buffer.length * 8 // 8388608 (test data)
     }
-    
+
     /** Was a bloom file deployed?  This does not try to load it from the server. */
     isAvailable() { return bts_genesiskeys_bloom_url !== undefined }
-    
+
     init(done) {
         if( this.bloom_buffer ) { done(); return }
         if( ! this.isAvailable() )
             throw new Error("Genesis bloom file was not deployed")
-        
+
         var xhr = new XMLHttpRequest
         // firefox 40 did not allow the blob url but ff 41.0.2 did
         xhr.responseType = "blob"
@@ -54,7 +54,7 @@ export default class GenesisFilter {
         xhr.open("GET", bts_genesiskeys_bloom_url)
         xhr.send()
     }
-    
+
     inGenesis(pubkey_or_address) {
         if( ! this.bloom_buffer ) throw new Error("Call init() first")
         for(var hashes = 0; hashes < 3; hashes++) {
@@ -72,7 +72,7 @@ export default class GenesisFilter {
         }
         return true
     }
-    
+
     filter( account_keys, status ) {
         if( ! this.isAvailable() ) {
             console.log("WARN: Missing bloom filter for BTS 0.9.x wallets")
@@ -103,9 +103,9 @@ export default class GenesisFilter {
                             return
                         }
                         var key = keys.public_keys[k]
-                        if( /^GPH/.test(key) ) key = "BTS" + key.substring(3)
+                        if( /^GPH/.test(key) ) key = "PLS" + key.substring(3)
                         if(this.inGenesis( key )) continue
-                        var addresses = key.addresses(key, 'BTS')
+                        var addresses = key.addresses(key, 'PLS')
                         var addy_found = false
                         for(var i = 0; i < addresses.length; i++) {
                             if(this.inGenesis( addresses[i] )) {
@@ -138,5 +138,5 @@ export default class GenesisFilter {
             }
         })
     }
-    
+
 }

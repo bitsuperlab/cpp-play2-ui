@@ -173,7 +173,7 @@ class Asset extends React.Component {
 
         // Add market link
         const core_asset = ChainStore.getAsset("1.3.0");
-        let preferredMarket = description.market ? description.market : core_asset ? core_asset.get("symbol") : "BTS";
+        let preferredMarket = description.market ? description.market : core_asset ? core_asset.get("symbol") : "PLS";
 
         if (urls && urls.length) {
             urls.forEach(url => {

@@ -22,13 +22,13 @@ import helper from "./test_helper"
 var _catch = th.log_error
 
 describe( "wallet_actions", ()=> {
-    
+
     var api
-    
+
     // broadcast with confirmation waits for a block
     //this == undefined ??
     //this.setTimeout(it(), 3 * 1000)
-    
+
     beforeEach( done => {
         api = ApiInstances.instance()
         api.init_promise.then( ()=>  {
@@ -42,14 +42,14 @@ describe( "wallet_actions", ()=> {
             })
         }).catch( _catch )
     })
-    
+
     afterEach(()=>{
         iDB.instance().db().close()
         // Does Not delete the database...
-        fakeIndexedDB.deleteDatabase("graphene_db")
+        fakeIndexedDB.deleteDatabase("dacplay_db")
         api.close()
     })
-    
+
     it("import_keys", done => {
         var suffix = secureRandom.randomBuffer(2).toString('hex').toLowerCase()
         helper.test_wallet( suffix ).then(()=>{
@@ -66,26 +66,26 @@ describe( "wallet_actions", ()=> {
             })
         }).catch(_catch)
     })
-    
+
     it( "wallet_backups", done => {
         var suffix = secureRandom.randomBuffer(2).toString('hex').toLowerCase()
         var public_name = "default_" + suffix
         helper.test_wallet( suffix ).then(()=>{
-            
+
             return createWalletObject().then( wallet_object => {
                 assert( wallet_object.wallet )
                 var wallet_object_string = JSON.stringify(wallet_object, null, 0)
                 var backup_private = PrivateKey.fromSeed("1")
                 var backup_public = backup_private.toPublicKey()
                 var backup_public_string = backup_public.toPublicKeyString()
-                
+
                 return createWalletBackup(
                     backup_public_string, wallet_object, 9,
                     secureRandom.randomBuffer(32).toString('binary')//"entropy"
                     ).then( binary_backup => {
-                
+
                     //console.log('... binary_backup',binary_backup.length, "original", wallet_object_string.length, "bytes")
-                
+
                     return decryptWalletBackup(backup_private.toWif(), binary_backup).then(
                         wallet_object2 => {
                         assert( wallet_object2.wallet )
@@ -97,7 +97,7 @@ describe( "wallet_actions", ()=> {
             })
         }).catch(_catch)
     })
-    
+
     it( "wallet_create", done => {
         var suffix = secureRandom.randomBuffer(2).toString('hex').toLowerCase()
         var public_name = "default_" + suffix
@@ -112,7 +112,7 @@ describe( "wallet_actions", ()=> {
             done()
         }).catch(_catch)
     })
-    
+
     it( "create_account", done => {
         var suffix = secureRandom.randomBuffer(2).toString('hex').toLowerCase()
         helper.test_wallet( suffix ).then(()=>{
@@ -125,7 +125,7 @@ describe( "wallet_actions", ()=> {
             })
         }).catch(_catch)
     })
-    
+
 // todo
 //    it( "import_balance", done => {
 //        var suffix = secureRandom.randomBuffer(2).toString('hex').toLowerCase()

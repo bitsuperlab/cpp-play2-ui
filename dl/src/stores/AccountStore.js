@@ -11,7 +11,7 @@ import AddressIndex from "stores/AddressIndex"
 import SettingsStore from "stores/SettingsStore"
 import ls from "common/localStorage";
 
-let accountStorage = new ls("__graphene__")
+let accountStorage = new ls("__dacplay__")
 
 /**
  *  This Store holds information about accounts in this wallet

@@ -56,17 +56,17 @@ class AccountOverview extends React.Component {
         let balances = [];
         balanceList.forEach( balance => {
             let balanceObject = ChainStore.getObject(balance);
-            let asset_type = balanceObject.get("asset_type"); 
+            let asset_type = balanceObject.get("asset_type");
             let asset = ChainStore.getObject(asset_type);
             let isBitAsset = asset && asset.has("bitasset_data_id");
 
             const core_asset = ChainStore.getAsset("1.3.0");
-            
+
             let assetInfoLinks;
             if (asset) {
                 let {market} = assetUtils.parseDescription(asset.getIn(["options", "description"]));
 
-                let preferredMarket = market ? market : core_asset ? core_asset.get("symbol") : "BTS";
+                let preferredMarket = market ? market : core_asset ? core_asset.get("symbol") : "PLS";
                 assetInfoLinks = (
                 <ul>
                     <li><a href={`#/asset/${asset.get("symbol")}`}><Translate content="account.asset_details"/></a></li>
@@ -147,7 +147,7 @@ class AccountOverview extends React.Component {
                 </tr>
             );
         }
-        
+
         let totalBalance = includedBalancesList.size ? <TotalBalanceValue balances={includedBalancesList}/> : null;
 
         return (
@@ -179,7 +179,7 @@ class AccountOverview extends React.Component {
                                 {hiddenBalancesList.size ? (
                                     <tr>
                                         <td colSpan="4" style={{textAlign: "right"}}>
-                                            <div    
+                                            <div
                                                 className="button outline"
                                                 onClick={this._toggleHiddenAssets.bind(this)}
                                             >
@@ -218,14 +218,14 @@ class AccountOverview extends React.Component {
                     </div>
                 </div>) : null}
 
-                {account.get("proposals") && account.get("proposals").size ? 
+                {account.get("proposals") && account.get("proposals").size ?
                 <div className="content-block">
                     <div className="block-content-header">
                         <Translate content="explorer.proposals.title" account={account.get("id")} />
                     </div>
                     <Proposals account={account.get("id")}/>
                 </div> : null}
-                
+
                 <div className="content-block">
                     <RecentTransactions
                         accountsList={Immutable.fromJS([account.get("id")])}

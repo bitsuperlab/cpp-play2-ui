@@ -5,7 +5,7 @@ var BaseStore = require("./BaseStore");
 var counterpart = require("counterpart-instance");
 var locale_en = require("json!assets/locales/locale-en");
 var ls = require("common/localStorage");
-let ss = new ls("__graphene__");
+let ss = new ls("__dacplay__");
 
 counterpart.registerTranslations("en", locale_en);
 counterpart.setFallbackLocale("en");

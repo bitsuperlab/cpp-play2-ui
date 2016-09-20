@@ -84,7 +84,8 @@ class App extends React.Component {
             loading: true,
             synced: false,
             theme: SettingsStore.getState().settings.get("themes"),
-            disableChat: SettingsStore.getState().settings.get("disableChat", false),
+            // disableChat: SettingsStore.getState().settings.get("disableChat", false),
+            disableChat: false,
             isMobile: false
         };
     }
@@ -177,6 +178,7 @@ class App extends React.Component {
 
     render() {
         let {disableChat, isMobile} = this.state;
+        disableChat = true;
 
         let content = null;
 

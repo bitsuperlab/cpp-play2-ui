@@ -15,7 +15,7 @@ import {
 }
 from "./tcomb_structs";
 
-let marketStorage = new ls("__graphene__");
+let marketStorage = new ls("__dacplay__");
 
 class MarketsStore {
     constructor() {

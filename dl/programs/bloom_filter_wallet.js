@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // Filter BTS 0.9.2+ import keys export file so that it will include only private keys
-// that may be found in the BTS 2.0 genesis block. 
+// that may be found in the BTS 2.0 genesis block.
 
 // Dependencies:
 // ./bloom.dat (1,048,576 bytes) sha1 3cee441d8d28ab3b26aea149630fa2a96a91845c
@@ -21,12 +21,12 @@ var h = require('../src/common/hash')
 var key_utils = require('../src/common/key_utils')
 var chain_config = require('../src/chain/config')
 
-chain_config.address_prefix = "BTS"
+chain_config.address_prefix = "PLS"
 
 fs.readFile('bloom.dat', function (err, data) {
     if (err) throw err
     console.error('bloom.dat (' + data.length + ' bytes)','sha1',h.sha1(data).toString('hex'),'\n')
-    
+
     var bits_in_filter = data.length * 8 // 8388608 (test data)
     function in_bloom(str) {
         // echo -n '0:BTS87mopaNqLDjT1BvzqQR3QjWzWSTgkWnMcwt5sqxHuavCBi1s3m'|sha256sum
@@ -47,7 +47,7 @@ fs.readFile('bloom.dat', function (err, data) {
         }
         return true
     }
-    
+
     var stdin = process.stdin, inputChunks = []
     stdin.resume()
     stdin.setEncoding('utf8')
@@ -65,7 +65,7 @@ fs.readFile('bloom.dat', function (err, data) {
                 if(running_count % 100 === 0) console.error('processing', running_count)
                 if( ! keys.public_keys) unsupportedJsonFormat()
                 var key = keys.public_keys[k]
-                if( /^GPH/.test(key) ) key = "BTS" + key.substring(3)
+                if( /^GPH/.test(key) ) key = "PLS" + key.substring(3)
                 if(in_bloom( key )) continue
                 var addresses = key_utils.addresses(key)
                 var addy_found = false

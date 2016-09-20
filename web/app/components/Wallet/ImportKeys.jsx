@@ -245,7 +245,7 @@ export default class ImportKeys extends Component {
             pubkey = ChainConfig.address_prefix + pubkey.substring(3)
             var address = PublicKey.fromPublicKeyString(pubkey).toAddressString()
             var addresses = account_addresses[account_name] || []
-            address = "BTS" + address.substring(3)
+            address = "PLS" + address.substring(3)
             //DEBUG console.log("... address",address,account_name)
             addresses.push(address)
             account_addresses[account_name] = addresses

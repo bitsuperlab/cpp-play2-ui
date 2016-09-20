@@ -5,9 +5,9 @@ var Immutable = require("immutable");
 import {merge} from "lodash";
 import ls from "common/localStorage";
 
-const CORE_ASSET = "BTS"; // Setting this to BTS to prevent loading issues when used with BTS chain which is the most usual case currently
+const CORE_ASSET = "PLS"; // Setting this to BTS to prevent loading issues when used with BTS chain which is the most usual case currently
 
-const STORAGE_KEY = "__graphene__";
+const STORAGE_KEY = "__dacplay__";
 let ss = new ls(STORAGE_KEY);
 
 class SettingsStore {
@@ -27,7 +27,7 @@ class SettingsStore {
 
         // Default markets setup
         let topMarkets = [
-            "MKR", "OPEN.MKR", "BTS", "OPEN.ETH", "ICOO", "BTC", "OPEN.LISK",
+            "MKR", "OPEN.MKR", "PLS", "OPEN.ETH", "ICOO", "BTC", "OPEN.LISK",
             "OPEN.STEEM", "OPEN.DAO", "PEERPLAYS", "USD", "CNY", "BTSR", "OBITS",
             "OPEN.DGD", "EUR", "TRADE.BTC", "CASH.BTC", "GOLD", "SILVER",
             "OPEN.USDT", "OPEN.EURT", "OPEN.BTC", "CADASTRAL"
