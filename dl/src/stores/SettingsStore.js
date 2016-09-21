@@ -17,7 +17,7 @@ class SettingsStore {
         this.defaultSettings = Immutable.Map({
             locale: "en",
             apiServer: "wss://testnet2.dacplay.org/ws",
-            faucet_address: "https://testnet2.dacplay.org",
+            faucet_address: "https://pls2faucet.dacplay.org",
             unit: CORE_ASSET,
             showSettles: false,
             showAssetPercent: false,
