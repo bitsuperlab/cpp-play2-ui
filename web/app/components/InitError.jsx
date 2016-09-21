@@ -82,7 +82,7 @@ class InitError extends React.Component {
                                     </div>
                                 </li>
                                 <li className="key-value clearfix">
-                                    <div className="float-left">Connection Status</div>
+                                    <div className="float-left"><Translate content="settings.conn_status" /></div>
                                     <div className="float-right">
                                         {this.props.rpc_connection_status === "open" ? <span className="txtlabel success"><Translate content={`init_error.connected`} /></span> : <span className="txtlabel warning"><Translate content={`init_error.not_connected`} /></span>}
                                     </div>

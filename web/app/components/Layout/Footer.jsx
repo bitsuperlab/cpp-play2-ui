@@ -45,13 +45,13 @@ class Footer extends React.Component {
         let bt = (new Date(block_time).getTime() + ChainStore.getEstimatedChainTimeOffset()) / 1000;
         let now = new Date().getTime() / 1000;
         let version_match = APP_VERSION.match(/2\.0\.(\d\w+)/);
-        let version = version_match ? `.${version_match[1]}` : ` ${APP_VERSION}`;
+        let version = version_match ? `${version_match[0]}` : ` ${APP_VERSION}`;
         return (
             <div className="show-for-medium grid-block shrink footer">
                 <div className="align-justify grid-block">
                     <div className="grid-block">
                         <div className="logo">
-                            <Translate content="footer.title" /><span className="version">{version}</span>
+                            <Translate content="footer.title" /> <span className="version">{version}</span>
                         </div>
                     </div>
                     {this.props.synced ? null : <div className="grid-block shrink txtlabel error"><Translate content="footer.nosync" />&nbsp; &nbsp;</div>}
@@ -99,7 +99,7 @@ class AltFooter extends Component {
         return <AltContainer
             stores={[CachedPropertyStore, BlockchainStore, WalletDb]}
             inject ={{
-                backup_recommended: ()=> 
+                backup_recommended: ()=>
                     (wallet && ( ! wallet.backup_date || CachedPropertyStore.get("backup_recommended"))),
                 rpc_connection_status: ()=> BlockchainStore.getState().rpc_connection_status
                 // Disable notice for separate brainkey backup for now to keep things simple.  The binary wallet backup includes the brainkey...

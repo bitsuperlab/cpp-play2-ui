@@ -10,7 +10,7 @@ import SettingsActions from "actions/SettingsActions";
 import Popover from "react-popover";
 import Translate from "react-translate-component";
 import AssetName from "./AssetName";
-
+import notify from "actions/NotificationActions";
 /**
  *  Given an amount and an asset, render it with proper precision
  *
@@ -71,8 +71,13 @@ class FormattedPrice extends React.Component {
 
     goToMarket(e) {
       e.preventDefault();
-      this.context.history.pushState(null, `/market/${this.props.base_asset.get("symbol")}_${this.props.quote_asset.get("symbol")}`);
-
+      notify.addNotification({
+          message: `市场尚未开发 Market is not open yet.`,
+          level: "error",
+          autoDismiss: 10
+      });
+      // disable market for now
+      // this.context.history.pushState(null, `/market/${this.props.base_asset.get("symbol")}_${this.props.quote_asset.get("symbol")}`);
     }
 
     render() {

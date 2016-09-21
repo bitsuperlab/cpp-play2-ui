@@ -77,8 +77,10 @@ class AccountOverview extends React.Component {
                 assetInfoLinks = (
                 <ul>
                     <li><a href={`#/asset/${asset.get("symbol")}`}><Translate content="account.asset_details"/></a></li>
+                  {/*
                     <li>{marketLink}</li>
                     {isBitAsset ? <li>{settleLink}</li> : null}
+                  */}
                 </ul>);
             }
 

@@ -72,7 +72,7 @@ class AccountMembership extends React.Component {
         if( ref ) account.referrer_name = ref.get('name');
         let reg = ChainStore.getAccount( account.registrar );
         if( reg ) account.registrar_name = reg.get('name');
-       
+
         let account_name = account.name;
 
         let network_fee  = account.network_fee_percentage/100;
@@ -125,7 +125,7 @@ class AccountMembership extends React.Component {
                             <div>
                                 <h4><Translate content="account.member.referral_link"/></h4>
                                 <Translate content="account.member.referral_text"/>:
-                                <h5>{`https://bitshares.openledger.info?r=${account.name}`}</h5>
+                                <h5>{`https://testnet2.dacplay.org?r=${account.name}`}</h5>
                             </div>) : null}
                             <h4><Translate content="account.member.fee_allocation"/></h4>
                             <table className="table key-value-table">

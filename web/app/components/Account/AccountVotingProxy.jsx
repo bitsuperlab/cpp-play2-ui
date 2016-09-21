@@ -74,7 +74,7 @@ class AccountVotingProxy extends React.Component {
         this.setState({new_proxy_account});
     }
 
-    _onNavigate(route) {        
+    _onNavigate(route) {
         this.context.history.pushState(null, route);
         // this._changeTab();
     }
@@ -91,11 +91,12 @@ class AccountVotingProxy extends React.Component {
         if(this.state.new_proxy_account && this.props.currentAccount.get("id") === this.state.new_proxy_account.get("id")) {
             error = "cannot proxy to yourself";
         }
-        
+
         let core = ChainStore.getObject("1.3.0");
         let knownProxies = [];
         if (core && core.get("symbol")) {
-            knownProxies = ["baozi", "bytemaster", "laomao", "xeroc", "bitcrab", "jonnybitcoin", "angel", "jakub", "dacs", "fav"];
+            // knownProxies = ["baozi", "bytemaster", "laomao", "xeroc", "bitcrab", "jonnybitcoin", "angel", "jakub", "dacs", "fav"];
+            knownProxies = ["logxing", "hackfisher", "boombastic"];
         }
 
         let proxies = knownProxies
@@ -128,7 +129,7 @@ class AccountVotingProxy extends React.Component {
         return (
             <div className="content-block" style={{maxWidth: "600px"}}>
                 <Translate component="h3" content="account.votes.proxy_short" />
-                <AccountSelector 
+                <AccountSelector
                     label="account.votes.proxy"
                      error={error}
                      account={this.state.current_proxy_input}

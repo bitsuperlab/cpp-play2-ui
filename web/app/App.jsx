@@ -196,6 +196,8 @@ class App extends React.Component {
 
     render() {
         let {disableChat, isMobile, showChat, dockedChat} = this.state;
+
+        // always disable chat
         disableChat = true;
         showChat    = false;
 
@@ -221,7 +223,7 @@ class App extends React.Component {
                             {this.props.children}
                         </div>
                         <div className="grid-block shrink" style={{overflow: "hidden"}}>
-                            {isMobile ? null :
+                            {isMobile || disableChat || !showChat ? null :
                                 <Chat
                                     showChat={showChat}
                                     disable={disableChat}
