@@ -35,7 +35,7 @@ export default class WalletSettings extends React.Component {
                     <Translate content="settings.lookup_text" />:
                 </div>
                 <div className="button outline" onClick={this.onLookup.bind(this)}>
-                        Lookup balances
+                  <Translate content="wallet.balance_claim_lookup" />
                 </div>
 
 
