@@ -1,16 +1,23 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import {Link, PropTypes} from "react-router";import ReactDOM from "react-dom";
 import Immutable from "immutable";
 import DashboardList from "./DashboardList";
 import RecentTransactions from "../Account/RecentTransactions";
+import counterpart from "counterpart";
 import Translate from "react-translate-component";
 import ps from "perfect-scrollbar";
 import AssetName from "../Utility/AssetName";
 import assetUtils from "common/asset_utils";
 import MarketCard from "./MarketCard";
+import AccountStore from "stores/AccountStore";
+import notify from "actions/NotificationActions";
+
 
 class Dashboard extends React.Component {
-
+    static contextTypes = {
+        location: React.PropTypes.object,
+        history: PropTypes.history
+    };
 
     constructor() {
         super();
@@ -74,6 +81,19 @@ class Dashboard extends React.Component {
         let ignored = myIgnoredAccounts.toArray().sort();
 
         let accountCount = linkedAccounts.size + myIgnoredAccounts.size;
+
+        // my don't have currentAccount and no linked accounts
+        // will redirect to create-account page
+        let currentAccount = AccountStore.getState().currentAccount;
+        if (!currentAccount && linkedAccounts.size == 0) {
+          notify.addNotification({
+              message: counterpart.translate("dashboard.not_accessible"),
+              level: "warning", autoDismiss: 3
+          });
+
+          // redirect to create-account route
+          this.context.history.pushState(null, '/create-account');
+        }
 
         let featuredMarkets = [
             ["PLS", "DICE"],

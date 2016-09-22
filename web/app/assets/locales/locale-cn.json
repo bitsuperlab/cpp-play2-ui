@@ -27,6 +27,9 @@
     "unlocked_tip": "钱包已解锁，点击锁定。",
     "update_asset": "更新资产"
   },
+  "dashboard": {
+    "not_accessible": "你还没有账户，仪表盘不可用。"
+  },
   "account": {
     "welcome": "欢迎使用 DACPLAY",
     "assets": "资产",

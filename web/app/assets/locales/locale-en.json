@@ -34,6 +34,9 @@
   },
   "propose": "Propose",
   "cancel": "Cancel",
+  "dashboard": {
+    "not_accessible": "You don't have an account, dashboard is not accessible"
+  },
   "account": {
     "welcome": "Welcome to DACPLAY",
     "asset": "Asset",
