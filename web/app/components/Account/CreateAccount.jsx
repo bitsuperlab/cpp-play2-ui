@@ -19,6 +19,8 @@ import RefcodeInput from "../Forms/RefcodeInput";
 import {ChainStore, FetchChain} from "graphenejs-lib";
 import {BackupCreate} from "../Wallet/Backup";
 
+var logo = require("assets/Icon-72@2x.png");
+
 @connectToStores
 class CreateAccount extends React.Component {
 
@@ -356,6 +358,8 @@ class CreateAccount extends React.Component {
             <div className="grid-block vertical page-layout">
                 <div className="grid-container shrink">
                     <div style={{textAlign: "center", paddingTop: 20}}>
+                        <img style={{margin: 10}} src={logo}/>
+
                         <Translate content="wallet.wallet_new" component="h2" />
 
                         <h4 style={{paddingTop: 20}}>

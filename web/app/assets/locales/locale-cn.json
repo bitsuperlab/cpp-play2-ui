@@ -749,7 +749,8 @@
     "backup": "需要备份",
     "nosync": "区块链数据陈旧，请等待数据完成同步..",
     "connection": "无连接",
-    "brainkey": "建议备份脑钱包密钥"
+    "brainkey": "建议备份脑钱包密钥",
+    "synced": "已同步"
   },
   "exchange": {
     "price_history": "价格历史",
@@ -946,7 +947,7 @@
     "tips_settings": "修改设置",
     "tips_account": "查看你的新账户",
     "link_account": "账户",
-    "wallet_new": "新账户",
+    "wallet_new": "创建新账户",
     "create_w_a": "创建一个钱包和一个账户",
     "create_a": "创建一个新账户",
     "create_success": "钱包创建成功",
