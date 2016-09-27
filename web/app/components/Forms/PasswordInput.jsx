@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import {PropTypes, Component} from "react";
 import classNames from "classnames";
 import Translate from "react-translate-component";
+import counterpart from "counterpart";
 
 class PasswordInput extends Component {
 
@@ -97,7 +98,7 @@ class PasswordInput extends Component {
                             autoComplete="off"
                             onChange={this.handleChange}
                             onKeyDown={this.onKeyDown}
-                            placeholder="Enter password"
+                            placeholder={counterpart.translate("wallet.password")}
                         />
                     </section>
                     {password_error}
@@ -111,7 +112,7 @@ class PasswordInput extends Component {
                             type="password"
                             ref="confirm_password"
                             autoComplete="off"
-                            placeholder="Confirm password"
+                            placeholder={counterpart.translate("wallet.confirm")}
                             onChange={this.handleChange}
                         />
                     </section>

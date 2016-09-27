@@ -36,14 +36,14 @@ class IntlStore extends BaseStore {
         this.localesObject = {en: locale_en};
 
         // for the first time, try to determine default language from explorer's language setting
-        let defaultLang = (window.navigator.language || window.navigator.userLanguage).toLowerCase().replace(/-.*/,'');
-        if (defaultLang == "zh") defaultLang = "cn";
+        this.defaultLang = (window.navigator.language || window.navigator.userLanguage).toLowerCase().replace(/-.*/,'');
+        if (this.defaultLang == "zh") this.defaultLang = "cn";
 
         // if language not supported, fallback to english
-        if (!this.hasLocale(defaultLang)) defaultLang = "en";
+        if (!this.hasLocale(this.defaultLang)) this.defaultLang = "en";
 
         // view setting (manual setting) has higher priority
-        this.currentLocale = ss.has("settings_v3") ? ss.get("settings_v3").locale : defaultLang;
+        this.currentLocale = ss.has("settings_v3") ? ss.get("settings_v3").locale : this.defaultLang;
 
         this.bindListeners({
             onSwitchLocale: IntlActions.switchLocale,
@@ -89,7 +89,7 @@ class IntlStore extends BaseStore {
     }
 
     onClearSettings() {
-        this.onSwitchLocale("en");
+        this.onSwitchLocale(this.defaultLang);
     }
 }
 

@@ -67,12 +67,7 @@ class SettingsStore {
             ],
             apiServer: [],
             unit: [
-                CORE_ASSET,
-                "USD",
-                "CNY",
-                "BTC",
-                "EUR",
-                "GBP"
+                CORE_ASSET
             ],
             showSettles: [
                 {translate: "yes"},
