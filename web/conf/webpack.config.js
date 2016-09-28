@@ -31,7 +31,8 @@ module.exports = function(options) {
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.DefinePlugin({
             APP_VERSION: JSON.stringify(git.tag()),
-            __ELECTRON__: !!options.electron
+            __ELECTRON__: !!options.electron,
+            CDN: JSON.stringify(options.cdn || "")
         })
     ];
 
