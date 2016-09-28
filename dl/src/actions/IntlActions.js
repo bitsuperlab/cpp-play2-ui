@@ -19,7 +19,7 @@ class IntlActions {
                 localeData: locales[locale]
             });
         } else {
-        	fetch(CDN + "/locale-" + locale + ".json").then( (reply) => {
+        	fetch(CDN + "/locale-" + locale + ".json?v=" + APP_VERSION).then( (reply) => {
                 return reply.json().then(result => {
                     this.dispatch({
                     	locale: locale,
