@@ -110,7 +110,7 @@ class RecentTransactions extends React.Component {
             }
             var blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
             var today = new Date();
-            saveAs(blob, "btshist-" + today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate() + ".csv");
+            saveAs(blob, "dacplayhist-" + today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate() + ".csv");
         }
 
         if (!this.props.fullHeight) {
