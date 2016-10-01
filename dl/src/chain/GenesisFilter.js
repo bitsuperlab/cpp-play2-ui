@@ -4,7 +4,7 @@ var bts_genesiskeys_bloom_url = undefined
 try {
     var url = require("file?name=pls_genesiskeys_bloom_[sha1:hash:hex:7].dat!assets/pls_genesiskeys_bloom.dat")
     // if(url.indexOf("3cee441") === -1) // bts verification
-    if(url.indexOf("0aa1965") === -1) // pls verification
+    if(url.indexOf("721c274") === -1) // pls verification
         throw new Error("Incorrect hash: pls_genesiskeys_bloom.dat")
     bts_genesiskeys_bloom_url = url
 } catch(e) {
@@ -44,7 +44,8 @@ export default class GenesisFilter {
             var reader = new FileReader
             reader.onload = evt => {
                 var contents = new Buffer(evt.target.result, 'binary')
-                if( contents.length !== 1048576) throw new Error("Wrong length")
+                // pls bloom data is only half size of bts's
+                if( contents.length !== 524288) throw new Error("Wrong length")
                 this.bits_in_filter = contents.length * 8 // 8388608 (test data)
                 this.bloom_buffer = contents
                 done()
