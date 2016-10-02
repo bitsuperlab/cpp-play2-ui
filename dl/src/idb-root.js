@@ -1,7 +1,7 @@
 import idb_helper from "idb-helper"
 import {Apis} from "graphenejs-ws";
 
-const DB_VERSION_MAIN = 1
+const DB_VERSION_MAIN = 2
 const DB_PREFIX = "dacplay_db"
 
 /** Usage: openIndexDB.then( db => ... */
