@@ -516,7 +516,7 @@
     "feeTypes": {
       "_none": "免费",
       "fee": "交易手续费",
-      "price_per_kbyte": "交易字节数，每千字节手续费",
+      "price_per_kbyte": "交易字节数(KB)",
       "basic_fee": "普通用户名手续费",
       "premium_fee": "高级用户名手续费",
       "membership_annual_fee": "年度会籍",
