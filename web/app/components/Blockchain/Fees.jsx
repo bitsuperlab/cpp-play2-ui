@@ -14,15 +14,21 @@ let ops = Object.keys(operations);
 
 // Define groups and their corresponding operation ids
 let fee_grouping = {
-    general  : [0,25,26,27,28,32,33,37,39,40],
-    asset    : [10,11,12,13,14,15,16,17,18,19,38],
-    market   : [1,2,3,4,17,18],
+    // general  : [0,25,26,27,28,32,33,37,39,40],
+    // asset    : [10,11,12,13,14,15,16,17,18,19,38],
+    // market   : [1,2,3,4,17,18],
+    // account  : [5,6,7,8,9],
+    // business : [20,21,22,23,24,29,30,31,34,35,36],
+    general  : [0,25,26,27,28,32,33,36],
+    asset    : [10,11,12,13,14,15,16,17,18,19,37],
+    // market   : [1,2,3,4,17,18],
     account  : [5,6,7,8,9],
-    business : [20,21,22,23,24,29,30,31,34,35,36],
+    business : [20,21,22,23,24,29,30,31,34,35],
+
 };
 
 // Operations that require LTM
-let ltm_required = [5, 7, 20, 21, 34];
+let ltm_required = [5, 7, 20, 21];
 
 @BindToChainState({keep_updating:true})
 class FeeGroup extends React.Component {
@@ -115,7 +121,7 @@ class FeeGroup extends React.Component {
             return (<tbody key={feeIdx}>{rows}</tbody>);
         })
 
-        return (   
+        return (
                    <div className="asset-card">
                     <div className="card-divider">{this.props.title}</div>
                     <table className="table">
