@@ -16,7 +16,7 @@ class SettingsStore {
 
         this.defaultSettings = Immutable.Map({
             locale: "en",
-            apiServer: "wss://testnet2.dacplay.org/ws",
+            apiServer: "wss://wallet.dacplay.org/ws",
             faucet_address: "https://pls2faucet.dacplay.org",
             unit: CORE_ASSET,
             showSettles: false,
@@ -51,7 +51,7 @@ class SettingsStore {
         // If you want a default value to be translated, add the translation to settings in locale-xx.js
         // and use an object {translate: key} in the defaults array
         let apiServer = [
-            {url: "wss://testnet2.dacplay.org/ws", location: "Shanghai, China"},
+            {url: "wss://wallet.dacplay.org/ws", location: "Shanghai, China"},
             // {url: "wss://testnet.bitshares.eu/ws", location: "Public Testnet Server (Frankfurt, Germany)"}
         ];
 
