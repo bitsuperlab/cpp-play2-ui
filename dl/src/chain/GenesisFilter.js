@@ -4,7 +4,7 @@ var bts_genesiskeys_bloom_url = undefined
 try {
     var url = require("file?name=pls_genesiskeys_bloom_[sha1:hash:hex:7].dat!assets/pls_genesiskeys_bloom.dat")
     // if(url.indexOf("3cee441") === -1) // bts verification
-    if(url.indexOf("721c274") === -1) // pls verification
+    if(url.indexOf("61afbb9") === -1) // pls verification
         throw new Error("Incorrect hash: pls_genesiskeys_bloom.dat")
     bts_genesiskeys_bloom_url = url
 } catch(e) {
