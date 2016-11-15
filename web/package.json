@@ -1,9 +1,9 @@
 {
-  "name": "Graphene-UI",
-  "version": "1.1.0",
-  "description": "Advanced wallet interface for graphene based blockchains (Bishares, Muse..)",
-  "homepage": "https://github.com/cryptonomex/graphene_ui",
-  "author": "Cryptonomex, Inc.",
+  "name": "DACPLAY-UI",
+  "version": "2.0.0",
+  "description": "Advanced wallet interface for DACPLAY",
+  "homepage": "https://github.com/bitsuperlab/cpp-play2-ui",
+  "author": "DACPLAY",
   "license": "LicenseRef-LICENSE",
   "engines": {
     "node": ">=5.0.0",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/cryptonomex/graphene_ui"
+    "url": "git://github.com/bitsuperlab/cpp-play2-ui"
   },
   "scripts": {
     "test": "jest",
@@ -21,7 +21,7 @@
     "start": "node server.js",
     "build": "NODE_ENV=production webpack --config conf/webpack-prod.js --progress --display-error-details --colors",
     "electron": "NODE_ENV=production webpack --config conf/webpack-electron.js --progress --display-error-details --colors;",
-    "postelectron": " echo 'copying to electron/build..'; cp -r dist/* ../electron/build/; echo 'done.'",
+    "postelectron": " echo 'copying to electron/build..'; cp -r dist/* ../electron/build/; cp app/assets/index-electron.html ../electron/build/index.html; cd ../electron/; npm run release; echo 'done.'",
     "build-win32": "set NODE_ENV=production && webpack --config conf/webpack-prod.js --progress --colors &&  echo 'copying to electron/build..' &&  xcopy dist ..\\electron\\build /s /e /y && echo 'done.'"
   },
   "dependencies": {

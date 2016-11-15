@@ -5,6 +5,7 @@ var gulpUtil = require('gulp-util');
 var jetpack = require('fs-jetpack');
 var asar = require('asar');
 var utils = require('./utils');
+var git = require('git-rev-sync');
 
 var projectDir;
 var releasesDir;
@@ -18,6 +19,8 @@ var init = function () {
     releasesDir = projectDir.dir('./releases');
     manifest = projectDir.read('build/package.json', 'json');
     finalAppDir = tmpDir.cwd(manifest.productName + '.app');
+
+    manifest.version = git.tag();
 
     return Q();
 };
