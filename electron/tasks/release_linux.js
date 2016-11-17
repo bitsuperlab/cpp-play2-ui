@@ -6,6 +6,7 @@ var childProcess = require('child_process');
 var jetpack = require('fs-jetpack');
 var asar = require('asar');
 var utils = require('./utils');
+var git = require('git-rev-sync');
 
 var projectDir;
 var releasesDir;
@@ -23,6 +24,8 @@ var init = function () {
     packName = manifest.name.toLowerCase() + '_' + manifest.version;
     packDir = tmpDir.dir(packName);
     readyAppDir = packDir.cwd('opt', manifest.name);
+
+    manifest.version = git.tag();
 
     return Q();
 };
