@@ -52,7 +52,7 @@ class SettingsStore {
         // and use an object {translate: key} in the defaults array
         let apiServer = [
             {url: "wss://wallet.dacplay.org/ws", location: "Shanghai, China"},
-            // {url: "wss://testnet.bitshares.eu/ws", location: "Public Testnet Server (Frankfurt, Germany)"}
+            {url: "wss://eu.dacplay.org/ws", location: "Netherland, Europe"}
         ];
 
         let defaults = {
