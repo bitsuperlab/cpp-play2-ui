@@ -21,11 +21,10 @@ var init = function () {
     tmpDir = projectDir.dir('./tmp', { empty: true });
     releasesDir = projectDir.dir('./releases');
     manifest = projectDir.read('build/package.json', 'json');
+    manifest.version = git.tag();
     packName = manifest.name.toLowerCase() + '_' + manifest.version;
     packDir = tmpDir.dir(packName);
     readyAppDir = packDir.cwd('opt', manifest.name);
-
-    manifest.version = git.tag();
 
     return Q();
 };
