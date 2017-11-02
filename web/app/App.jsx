@@ -14,6 +14,7 @@ import Witnesses from "./components/Explorer/Witnesses";
 import CommitteeMembers from "./components/Explorer/CommitteeMembers";
 import Header from "components/Layout/Header";
 import Footer from "./components/Layout/Footer";
+import AccountMigrateSelectorContainer from "./components/Wallet/AccountMigrateSelectorContainer";
 import AccountPage from "./components/Account/AccountPage";
 import AccountOverview from "./components/Account/AccountOverview";
 import AccountAssets from "./components/Account/AccountAssets";
@@ -374,6 +375,7 @@ let routes = (
             <Route path="backup/create" component={BackupCreate}/>
             <Route path="backup/brainkey" component={BackupBrainkey}/>
             <Route path="balance-claims" component={BalanceClaimActive}/>
+            <Route path="migrate" component={AccountMigrateSelectorContainer}/>
         </Route>
         <Route path="create-wallet" component={WalletCreate}/>
         <Route path="transfer" component={Transfer}/>

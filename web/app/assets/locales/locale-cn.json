@@ -25,7 +25,8 @@
     "help": "帮助",
     "locked_tip": "钱包已锁定，点击解锁。",
     "unlocked_tip": "钱包已解锁，点击锁定。",
-    "update_asset": "更新资产"
+    "update_asset": "更新资产",
+    "migrate": "迁移至以太坊网络"
   },
   "dashboard": {
     "not_accessible": "你还没有账户，仪表盘不可用。"
@@ -478,7 +479,8 @@
       "transfer_from_blind": "从隐私账户转出",
       "committee_member_update": "更新理事会成员账户",
       "asset_claim_fees": "领取资产手续费",
-      "all": "Show all"
+      "all": "Show all",
+      "account_balance_migrate": "账户余额迁移"
     },
     "confirm": "请确认交易",
     "broadcast_success": "交易已向网络广播",
@@ -760,7 +762,7 @@
     "price_history": "价格历史",
     "order_depth": "市场深度",
     "market_history": "市场历史",
-    "balance": "我的余额",
+    "balance": "余额",
     "lowest_ask": "最低卖价",
     "highest_bid": "最高买价",
     "total": "成交额",
@@ -963,7 +965,16 @@
     "tips_explore": "现在你已经成功创建了一个账户，并且下载了备份文件，让我们开始吧。点击左侧的链接开始探索。",
     "tips_header": "这些链接也可以在页面顶部，或者右上方账户名右侧的下拉菜单中找到。",
     "tips_login": "重要！这里没有登录/注销的概念和功能，当你需要发生交易时解锁钱包，闲置或者手动选择进行钱包锁定。",
-    "import_key_success": "已成功导入 %(count)s 个密钥。"
+    "import_key_success": "已成功导入 %(count)s 个密钥。",
+    "migrate_title": "迁移账户余额到以太坊网络",
+    "migrate_explain": "DACPLAY网络原生币PLS将迁移至以太坊网络上的ERC20代币。请选择迁移的账户，账户余额将迁移至你提供的以太坊地址下的PLS代币余额。更多迁移计划及详细说明请参见 <a href='https://dacplay.org/posts/2' target='_blank'>博文</a> 。",
+    "eth_address_placeholder": "你的以太坊地址",
+    "btn_migrate": "迁移",
+    "your_eth_address": "以太坊地址",
+    "no_accounts": "没有找到账户",
+    "error_no_accounts_selected": "请选择需要迁移的账户",
+    "error_wrong_eth_address": "以太坊地址校验失败",
+    "error_empty_eth_address": "请输入你的以太坊地址"
   },
   "borrow": {
     "title": "%(asset_symbol)s 保证金头寸",

@@ -56,6 +56,10 @@ export default class WalletManager extends WalletBaseComponent {
                 return "wallet.import_keys";
                 break;
 
+            case "/wallet/migrate":
+              return "wallet.migrate_title";
+              break;
+
 
             default:
                 return "wallet.console";

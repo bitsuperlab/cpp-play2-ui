@@ -30,7 +30,8 @@
     "unlock": "Unlock Wallet",
     "help": "Help",
     "locked_tip": "Wallet is locked.<br/>Click to unlock.",
-    "unlocked_tip": "Wallet is unlocked.<br/>Click to lock."
+    "unlocked_tip": "Wallet is unlocked.<br/>Click to lock.",
+    "migrate": "Migrate to Ethereum"
   },
   "propose": "Propose",
   "cancel": "Cancel",
@@ -505,7 +506,8 @@
       "transfer_to_blind": "Transfer to blinded account",
       "blind_transfer": "Blinded transfer",
       "transfer_from_blind": "Transfer from blinded account",
-      "asset_claim_fees": "Claim asset fees"
+      "asset_claim_fees": "Claim asset fees",
+      "account_balance_migrate": "Acount Balance Migrate"
     },
     "feeGroups": {
       "general": "General",
@@ -951,7 +953,16 @@
     "tips_explore": "Now that you've successfully created an account and downloaded the backup, it's time to get started. Click on one of the links on the left to start exploring.",
     "tips_header": "You can also find these same links in the top menu, and in the drop-down menu next to your account name.",
     "tips_login": "IMPORTANT: There is no login/logout functionality here, you merely unlock your wallet when you wish to make a transaction.",
-    "import_key_success": "Successfully imported %(count)s keys."
+    "import_key_success": "Successfully imported %(count)s keys.",
+    "migrate_title": "Migrate Account Balance to Ethereum network",
+    "migrate_explain": "DACPLAY native token PLS will be migrated to ERC20 token PLS on Ethereum network, please select your accounts and your Ethereum address to migrate.  Account balances selected will be migrated to your provided ETH address.  See <a href='https://dacplay.org/posts/2' target='_blank'>this post</a> for more detailed explanations.",
+    "eth_address_placeholder": "Your ETH address",
+    "btn_migrate": "Migrate",
+    "your_eth_address": "ETH address",
+    "no_accounts": "No accounts found",
+    "error_no_accounts_selected": "No accounts selected",
+    "error_wrong_eth_address": "ETH address validation failed",
+    "error_empty_eth_address": "Please provide your ETH address"
   },
   "borrow": {
     "title": "%(asset_symbol)s Margin",

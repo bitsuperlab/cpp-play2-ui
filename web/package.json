@@ -31,6 +31,7 @@
     "classnames": "^2.2.1",
     "cookies-js": "^1.2.1",
     "counterpart": "^0.17.1",
+    "ethereum-address": "0.0.4",
     "event-emitter": "^0.3.4",
     "foundation-apps": "git+https://github.com/zurb/foundation-apps.git",
     "git-rev-sync": "^1.4.0",

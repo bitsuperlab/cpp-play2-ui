@@ -221,6 +221,28 @@ class WalletActions {
             resolve(p)
         })
     }
+
+    migrateAccounts(account_ids, eth_address, broadcast = true) {
+        var tr = new TransactionBuilder();
+
+        for(let account_id of account_ids) {
+          tr.add_type_operation("account_balance_migrate", {
+              fee: { amount: "0", asset_id: "1.3.0"},
+              account: account_id,
+              eth_address: eth_address
+          });
+        }
+        tr.set_expire_seconds( (15 * 60) + account_ids.length)
+
+        return WalletDb.process_transaction(tr, null, broadcast)
+        .then(result => {
+            console.log('migrate success', result);
+        })
+        .catch(err => {
+            console.log("account_balance_migrate err:", err);
+        })
+    }
+
 }
 
 export default alt.createActions(WalletActions)
