@@ -128,12 +128,10 @@ class Dashboard extends React.Component {
         return (
             <div ref="wrapper" className="grid-block page-layout vertical">
                 <div ref="container" className="grid-container" style={{padding: "25px 10px 0 10px"}}>
-{/*
-                    <Translate content="exchange.featured" component="h4" />
-                    <div className="grid-block small-up-1 medium-up-3 large-up-4 no-overflow">
-                        {markets}
+                    <div className="callout primary">
+                      <p dangerouslySetInnerHTML={{__html: counterpart.translate("wallet.migrate_explain")}}></p>
+                      <Link to="/wallet/migrate" className="button success"><Translate content="wallet.btn_go_migrate" /></Link>
                     </div>
-*/}
 
                     {accountCount ? <div className="generic-bordered-box" style={{marginBottom: 5}}>
                         <div className="block-content-header" style={{marginBottom: 15}}>

@@ -969,6 +969,7 @@
     "migrate_title": "迁移账户余额到以太坊网络",
     "migrate_explain": "DACPLAY网络原生币PLS将迁移至以太坊网络上的ERC20代币。请选择迁移的账户，账户余额将迁移至你提供的以太坊地址下的PLS代币余额。更多迁移计划及详细说明请参见 <a href='https://dacplay.org/posts/2' target='_blank'>博文</a> 。",
     "eth_address_placeholder": "你的以太坊地址",
+    "btn_go_migrate": "前往迁移页面",
     "btn_migrate": "迁移",
     "your_eth_address": "以太坊地址",
     "no_accounts": "没有找到账户",

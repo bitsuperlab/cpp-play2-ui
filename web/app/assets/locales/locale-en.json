@@ -957,6 +957,7 @@
     "migrate_title": "Migrate Account Balance to Ethereum network",
     "migrate_explain": "DACPLAY native token PLS will be migrated to ERC20 token PLS on Ethereum network, please select your accounts and your Ethereum address to migrate.  Account balances selected will be migrated to your provided ETH address.  See <a href='https://dacplay.org/posts/2' target='_blank'>this post</a> for more detailed explanations.",
     "eth_address_placeholder": "Your ETH address",
+    "btn_go_migrate": "Migrate now",
     "btn_migrate": "Migrate",
     "your_eth_address": "ETH address",
     "no_accounts": "No accounts found",
