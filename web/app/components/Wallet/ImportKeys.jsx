@@ -505,6 +505,16 @@ export default class ImportKeys extends Component {
 
         let count = 0, invalid_count = 0;
         let wif_regex = /5[HJK][1-9A-Za-z]{49}/g;
+
+        // if key not supported, such as /[LK] compressed wif
+        if (!contents.match(wif_regex)) {
+          this.setState({
+            key_text_message: "Key not supported."
+          }, () => this.updateOnChange());
+          this.state.key_text_message = null;
+          return count;
+        }
+
         for(let wif of contents.match(wif_regex) || [] ) {
             try {
                 let private_key = PrivateKey.fromWif(wif); //could throw and error
